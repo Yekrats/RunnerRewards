@@ -14,6 +14,8 @@ class Runner {
     Date    dateCreated
     Date    lastUpdated
 
+    static hasMany = [registrations: Registration]
+
     static constraints = {
         firstName     maxSize: 50, nullable: false, blank: false
         middleInitial maxSize: 1, nullable: true, blank: true
@@ -25,5 +27,14 @@ class Runner {
         state         size: 2..2, nullable: true
         zip4          size: 5..10, nullable: true
         dateOfBirth   nullable: false, blank: false
+        hasMany       nullable: false, blank: false
+    }
+    String toString() {
+        def name = "$firstName"
+        if (middleInitial != null) {
+            name += " $middleInitial"
+        }
+        name += " $lastName"
+        return name.trim()
     }
 }
